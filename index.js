@@ -87,6 +87,6 @@ client.on('ready', async () => {
 
 
 //Normal Login
-//client.login(config.token)
+client.login(config.token)
 // heroku 
-client.login(process.env.DJS_TOKEN)
+//client.login(process.env.DJS_TOKEN)
