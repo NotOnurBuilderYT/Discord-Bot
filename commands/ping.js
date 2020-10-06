@@ -1,11 +1,14 @@
+const { Discord, MessageEmbed } = require("discord.js");
 module.exports = {
-    commands: ['ping', 'latency', 'test'],
-    permissionError: 'You need admin permissions to run this command',
-    minArgs: 0,
-    maxArgs: 0,
-    callback: (message, arguments, text) => {
-        message.channel.send('Pong!')
-    },
-    permissions: '',
-    requiredRoles: [],
-  }
+    commands: 'ping',
+    callback: (message, arguments, text, client) => {
+        message.reply('3.2.1...').then((resultsMessage) => {
+            const ping = resultsMessage.createdTimestamp - message.createdTimestamp
+            const embed = new MessageEmbed()
+            .setTitle(`Bot lantency: ${ping}, API Latency: ${client.ws.ping}`)
+            .setColor('RANDOM')
+            .setFooter('🤩 https://discord.gg/ATdDWJd 🤩')
+            message.channel.send({embed: embed})
+        })
+    }
+}

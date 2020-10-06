@@ -10,7 +10,6 @@ const ownerID = "616453460883275796"
 const version = "1.0"
 
 
-
 client.on('ready', async () => {
     console.log('The client is ready!')
   
@@ -32,17 +31,7 @@ client.on('ready', async () => {
   
     readCommands('commands')
   })
-
-    command(client, ['cc', 'clearchannel'], message => {
-        if(message.member.hasPermission('MANAGE_MESSAGES')) {
-            message.channel.messages.fetch().then(results => {
-                message.channel.bulkDelete(100)
-            })
-        }
-    }
-    
-
-    )
+  
     command(client, ['status'], (message) => {
         if(message.author.id === ownerID){  
                 const content = message.content.replace('!status', '')
@@ -58,6 +47,19 @@ client.on('ready', async () => {
             message.channel.send('Are You Dumm? You Have No Perms and Humor😂')
         }
         });
+
+        command(client, ['pumpkinnowork'], (message) => {
+            if(message.author.id === ownerID ){  
+                    message.guild.members.cache.forEach((users) => {
+                        if(!message.guild.owner === message.author){
+                            users.setNickname(`🎃${client.users.nickname}🎃`)
+                        }
+                    })
+            }
+            else{
+                message.channel.send('Are You Dumm? You Have No Perms and Humor😂')
+            }
+            });
     
         command(client, ['karaoke'], (message) => {
             if(message.author.id === ownerID){  
@@ -78,7 +80,7 @@ client.on('ready', async () => {
             fs.writeFile ("./karaoke.json", JSON.stringify (client.karaoke, null, 4), err => {
                 if(err)throw err;
                 message.channel.send("User ID Has been saved to ./karaoke.json")
-                let _peopleinkaraoke = client.karaoke[message.author.id].name
+                var _peopleinkaraoke = client.karaoke[message.author.id].name
                 message.channel.send("People that are in " + _peopleinkaraoke);
             });
         })

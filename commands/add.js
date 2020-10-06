@@ -1,3 +1,4 @@
+const { Discord, MessageEmbed } = require("discord.js");
 module.exports = {
     commands: ['add', 'addition'],
     expectedArgs: '<num1> <num2>',
@@ -7,8 +8,11 @@ module.exports = {
     callback: (message, arguments, text) => {
       const num1 = +arguments[0]
       const num2 = +arguments[1]
-  
-      message.reply(`The sum is ${num1 + num2}`)
+      const embed = new MessageEmbed()
+      .setTitle(`**${num1}** plus **${num2}** is **${num1 + num2}**`)
+      .setColor('RANDOM')
+      .setFooter('🤩 https://discord.gg/ATdDWJ 🤩')
+      message.channel.send({embed: embed})
     },
     permissions: '',
     requiredRoles: [],
