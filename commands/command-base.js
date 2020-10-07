@@ -1,3 +1,4 @@
+const { Discord, MessageEmbed } = require("discord.js");
 const { prefix } = require('../config.json')
 
 const validatePermissions = (permissions) => {
@@ -42,6 +43,8 @@ const validatePermissions = (permissions) => {
   }
 }
 
+let recentlyRan = [] // guildId-userId-command
+
 module.exports = (client, commandOptions) => {
   let {
     commands,
@@ -49,6 +52,7 @@ module.exports = (client, commandOptions) => {
     permissionError = 'You do not have permission to run this command.',
     minArgs = 0,
     maxArgs = null,
+    cooldown = -1,
     permissions = [],
     requiredRoles = [],
     callback,
@@ -71,7 +75,7 @@ module.exports = (client, commandOptions) => {
   }
 
   // Listen for messages
-  client.on('message', (message) => {
+  client.on('message', async (message) => {
     const { member, content, guild } = message
 
     for (const alias of commands) {
@@ -98,11 +102,27 @@ module.exports = (client, commandOptions) => {
           )
 
           if (!role || !member.roles.cache.has(role.id)) {
-            message.reply(
-              `You must have the "${requiredRole}" role to use this command.`
-            )
+            const embed = new MessageEmbed()
+            .setTitle(`You must have the "${requiredRole}" role to use this command.`)
+            .setColor('FF0000')
+            .setFooter('🤩 https://discord.gg/ATdDWJd 🤩')
+            message.channel.send({embed: embed})
             return
           }
+        }
+
+        // Ensure the user has not ran this command too frequently
+        //guildId-userId-command
+        let cooldownString = `${guild.id}-${member.id}-${commands[0]}`
+        console.log('cooldownString:', cooldownString)
+
+        if (cooldown > 0 && recentlyRan.includes(cooldownString)) {
+          const embed = new MessageEmbed()
+            .setTitle(`Please Slow Down :octagonal_sign: `)
+            .setColor('FF0000')
+            .setFooter('🤩 https://discord.gg/ATdDWJd 🤩')
+            message.channel.send({embed: embed})
+          return
         }
 
         // Split on any number of spaces
@@ -116,10 +136,26 @@ module.exports = (client, commandOptions) => {
           arguments.length < minArgs ||
           (maxArgs !== null && arguments.length > maxArgs)
         ) {
-          message.reply(
-            `Incorrect syntax! Use ${prefix}${alias} ${expectedArgs}`
-          )
+          const embed = new MessageEmbed()
+            .setTitle(`Use ${prefix}${alias} ${expectedArgs}`)
+            .setColor('FF0000')
+            .setFooter('🤩 https://discord.gg/ATdDWJd 🤩')
+            message.channel.send({embed: embed})
           return
+        }
+
+        if (cooldown > 0) {
+          recentlyRan.push(cooldownString)
+
+          setTimeout(() => {
+            console.log('Before:', recentlyRan)
+
+            recentlyRan = recentlyRan.filter((string) => {
+              return string !== cooldownString
+            })
+
+            console.log('After:', recentlyRan)
+          }, 1000 * cooldown)
         }
 
         // Handle the custom command code

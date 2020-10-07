@@ -1,8 +1,6 @@
 const { Message } = require('discord.js')
 const { prefix } = require('./config.json')
 
-'ping'
-
 module.exports = (client,aliases, callback) => {
     if(typeof aliases === 'string') {
         aliases = [aliases]

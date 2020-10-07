@@ -1,7 +1,7 @@
 const { Discord, MessageEmbed } = require("discord.js");
 module.exports = {
     commands: ['clear', 'bulkdelete'],
-    expectedArgs: '<NumberToDelete>',
+    expectedArgs: '`<NumberToDelete>`',
     permissionError: "You Need `Manage_Messages` To Perform This Action",
     minArgs: 1,
     maxArgs: 1,
@@ -11,7 +11,7 @@ module.exports = {
             message.channel.bulkDelete(numToDelete)
             const embed = new MessageEmbed()
             .setTitle(`Cleared **${numToDelete}** Messages :white_check_mark: `)
-            .setColor('85bb65')
+            .setColor('2aae2a') //2aae2a green
             .setFooter('🤩 https://discord.gg/ATdDWJ 🤩')
             message.channel.send({embed: embed})
         })

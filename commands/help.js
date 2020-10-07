@@ -16,6 +16,7 @@ module.exports = {
         { name: 'Pumpkin', value: 'Adds 🎃 in name', inline: true },
         { name: 'Help', value: 'Shows This Embed', inline: true },
         { name: 'Ping', value: 'Tells Bot Latency', inline: true },
+        { name: 'Avatar', value: 'Info About User', inline: true },
       )
       .setTitle(`**Cowboy Bot Commands**`)
       .setColor('RANDOM')

@@ -5,11 +5,12 @@ module.exports = {
     minArgs: 0,
     maxArgs: 0,
     callback: (message, arguments, text) => {
-      if(message.member.nickname === null) {
         message.member.setNickname(`🎃${message.author.username}🎃`)
-        message.channel.send(`Your Nick Name Is Now **🎃${message.author.username}🎃**`)
-      }
-      
+        const embed = new MessageEmbed()
+        .setTitle(`Your Nick Name Is Now **🎃${message.author.username}🎃**`)
+        .setColor('2aae2a')
+        .setFooter('🤩https://discord.gg/ATdDWJ🤩')
+        message.channel.send({embed: embed})
     },
     permissions: '',
     requiredRoles: [],

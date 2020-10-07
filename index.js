@@ -12,10 +12,10 @@ const version = "1.0"
 
 client.on('ready', async () => {
     console.log('The client is ready!')
-  
+    
     const baseFile = 'command-base.js'
     const commandBase = require(`./commands/${baseFile}`)
-  
+
     const readCommands = (dir) => {
       const files = fs.readdirSync(path.join(__dirname, dir))
       for (const file of files) {
