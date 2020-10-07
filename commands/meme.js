@@ -8,7 +8,7 @@ module.exports = {
     maxArgs: 0,
     cooldown: 1,
     callback: async(message, arguments, text) => {
-        const subReddits = ["dankmemes", "meme", "memes", "comedyheaven"]
+        const subReddits = ["dankmemes", "meme", "memes", "comedyheaven", "cleanmemes"]
         const random = subReddits[Math.floor(Math.random() * subReddits.length)]
   
         const img = await randomPuppy(random);

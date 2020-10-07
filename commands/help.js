@@ -17,6 +17,8 @@ module.exports = {
         { name: 'Help', value: 'Shows This Embed', inline: true },
         { name: 'Ping', value: 'Tells Bot Latency', inline: true },
         { name: 'Avatar', value: 'Info About User', inline: true },
+        { name: 'Meme', value: 'Gives A __**Dank**__ Meme', inline: true },
+        { name: '8ball', value: 'Gives An Answer To Your Question', inline: true },
       )
       .setTitle(`**Cowboy Bot Commands**`)
       .setColor('RANDOM')
