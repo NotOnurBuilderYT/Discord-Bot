@@ -9,6 +9,19 @@ const { join } = require('path')
 const ownerID = "616453460883275796"
 const version = "1.0"
 
+client.on('guildCreate', guild =>{
+    const channelId = '763453820897984542';
+    const channel = client.channels.cache.get(channelId); //This Gets That Channel
+    const sowner = guild.owner.user; //This Gets The Guild Owner
+    if(!channel) return; //If the channel is invalid it returns
+    const embed = new Discord.MessageEmbed()
+        .setTitle('I Joined A Guild!')
+        .setDescription(`**Guild Name:** ${guild.name} (${guild.id})\n**Members:** ${guild.memberCount}\n**Owner:** ${sowner.tag}`)
+        .setTimestamp()
+        .setColor('RANDOM')
+        .setFooter(`I'm In ${client.guilds.cache.size} Guilds Now!`);
+        channel.send(embed);
+});
 
 client.on('ready', async () => {
     console.log('The client is ready!')
