@@ -1,4 +1,4 @@
-const { Discord, MessageEmbed } = require("discord.js");
+const { Discord, MessageEmbed } = require('discord.js')
 const { prefix } = require('../config.json')
 
 const validatePermissions = (permissions) => {
@@ -103,10 +103,11 @@ module.exports = (client, commandOptions) => {
 
           if (!role || !member.roles.cache.has(role.id)) {
             const embed = new MessageEmbed()
-            .setTitle(`You must have the "${requiredRole}" role to use this command.`)
-            .setColor('FF0000')
-            .setFooter('🤩 https://discord.gg/ATdDWJd 🤩')
-            message.channel.send({embed: embed})
+              .setTitle(
+                `You must have the "${requiredRole}" role to use this command.`
+              )
+              .setColor('FF0000')
+            message.channel.send({ embed: embed })
             return
           }
         }
@@ -120,8 +121,7 @@ module.exports = (client, commandOptions) => {
           const embed = new MessageEmbed()
             .setTitle(`Please Slow Down :octagonal_sign: `)
             .setColor('FF0000')
-            .setFooter('🤩 https://discord.gg/ATdDWJd 🤩')
-            message.channel.send({embed: embed})
+          message.channel.send({ embed: embed })
           return
         }
 
@@ -139,8 +139,7 @@ module.exports = (client, commandOptions) => {
           const embed = new MessageEmbed()
             .setTitle(`Use ${prefix}${alias} ${expectedArgs}`)
             .setColor('FF0000')
-            .setFooter('🤩 https://discord.gg/ATdDWJd 🤩')
-            message.channel.send({embed: embed})
+          message.channel.send({ embed: embed })
           return
         }
 
