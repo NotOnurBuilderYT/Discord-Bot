@@ -6,8 +6,8 @@ client.karaoke = require("./karaoke.json")
 const config = require('./config.json')
 const command = require('./command')
 const { join } = require('path')
-const ownerID = "616453460883275796"
-const version = "1.0"
+const ownerID = require('./config.json')
+const version = require('./config.json')
 
 client.on('guildCreate', guild =>{
     const channelId = '763453820897984542';
@@ -46,7 +46,7 @@ client.on('ready', async () => {
   })
   
     command(client, ['status'], (message) => {
-        if(message.author.id === ownerID){  
+        if(message.author.id == ownerID){  
                 const content = message.content.replace('!status', '')
                 message.channel.send('Status Is Changed By The King 👑')
                     client.user.setPresence({
@@ -55,51 +55,11 @@ client.on('ready', async () => {
                             type: 3,
                         }
             });
-        }
-        else{
+        } else {
             message.channel.send('Are You Dumm? You Have No Perms and Humor😂')
         }
+       
         });
-
-        command(client, ['pumpkinnowork'], (message) => {
-            if(message.author.id === ownerID ){  
-                    message.guild.members.cache.forEach((users) => {
-                        if(!message.guild.owner === message.author){
-                            users.setNickname(`🎃${client.users.nickname}🎃`)
-                        }
-                    })
-            }
-            else{
-                message.channel.send('Are You Dumm? You Have No Perms and Humor😂')
-            }
-            });
-    
-        command(client, ['karaoke'], (message) => {
-            if(message.author.id === ownerID){  
-                    message.channel.send("🎤Let's Get This Karaoke Started!🎤")
-                    message.channel.send("Everyone That Wants To Sing Type !join")
-                    var isjoin = "yes"
-            }
-            else{
-                message.channel.send('Are You Dumm? You Have No Perms To Start The Karaoke😂')
-            }
-            });
-        command(client, ['join'], (message) => {
-            message.channel.send(`**__${message.author.username}__** joined!`)
-            message.channel.send(`If You Want To Vote Type **!vote <1-10>**`)
-            client.karaoke[message.author.id] = {
-                name: message.author.username
-            }
-            fs.writeFile ("./karaoke.json", JSON.stringify (client.karaoke, null, 4), err => {
-                if(err)throw err;
-                message.channel.send("User ID Has been saved to ./karaoke.json")
-                var _peopleinkaraoke = client.karaoke[message.author.id].name
-                message.channel.send("People that are in " + _peopleinkaraoke);
-            });
-        })
-    
-
-
 
 //Normal Login
 client.login(config.token)
