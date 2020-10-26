@@ -5,7 +5,7 @@ const fs = require('fs')
 const config = require('./config.json')
 const command = require('./command')
 const { join } = require('path')
-const ownerID = require('./config.json')
+const ownerID = '616453460883275796'
 const version = require('./config.json')
 
 client.on('guildCreate', (guild) => {
