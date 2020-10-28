@@ -18,7 +18,7 @@ module.exports = {
         'Definetly',
         'Absoloutely',
         'Not in a million years',
-        'Please try again',
+        'Please try again (When you get a life)',
         'Yes indeed',
         'No, i dont think so',
         'Donald Trump: No',

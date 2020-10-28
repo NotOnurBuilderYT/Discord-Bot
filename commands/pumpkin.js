@@ -1,3 +1,4 @@
+const { Discord, MessageEmbed } = require('discord.js')
 module.exports = {
   commands: ['halloween', 'pumpkin'],
   expectedArgs: '',
@@ -10,7 +11,6 @@ module.exports = {
     const embed = new MessageEmbed()
       .setTitle(`Your Nick Name Is Now **🎃${message.author.username}🎃**`)
       .setColor('2aae2a')
-      .setFooter('🤩https://discord.gg/ATdDWJ🤩')
     message.channel.send({ embed: embed })
   },
   permissions: '',

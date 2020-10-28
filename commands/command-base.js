@@ -90,7 +90,10 @@ module.exports = (client, commandOptions) => {
         // Ensure the user has the required permissions
         for (const permission of permissions) {
           if (!member.hasPermission(permission)) {
-            message.reply(permissionError)
+            const embed = new MessageEmbed()
+              .setTitle(`${permissionError}`)
+              .setColor('FF0000')
+            message.channel.send({ embed: embed })
             return
           }
         }

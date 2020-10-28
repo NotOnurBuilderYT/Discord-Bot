@@ -7,7 +7,7 @@ module.exports = {
       const embed = new MessageEmbed()
         .setTitle(`Bot lantency: ${ping}, API Latency: ${client.ws.ping}`)
         .setColor('RANDOM')
-        .setFooter('🤩 https://discord.gg/ATdDWJd 🤩')
+        .setFooter('ik trash right?')
       message.channel.send({ embed: embed })
     })
   },
